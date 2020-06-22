@@ -67,7 +67,7 @@ const Filters = (props) => {
           type='date'
           pattern={dateYYYYMMDDPattern}
         />
-        <Button text='Actualizar Información' onClick={handleSubmit} />
+        <Button text='Buscar Información' onClick={handleSubmit} />
       </Form>
     </Container>
   );

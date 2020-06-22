@@ -6,6 +6,7 @@ import { formatDate, getlastDateAfterDays } from 'Utils/utilities';
 
 import Filters from '../components/Filters';
 import Notification from '../components/Notification';
+import Scheduler from '../components/Scheduler';
 
 const Container = styled.div`
   width: 100%;
@@ -16,7 +17,7 @@ const FilteredCalendar = (props) => {
   const defaultData = {
     psychologistId: 1,
     startDate: formatDate(new Date()),
-    endDate: formatDate(getlastDateAfterDays(7)),
+    endDate: formatDate(getlastDateAfterDays(6)),
   }
   const [filters, setFilters] = useState(defaultData);
   const [appointments, setAppointments] = useState([]);
@@ -49,6 +50,20 @@ const FilteredCalendar = (props) => {
   return (
     <Container>
       <Filters defaultData={defaultData} setFilters={setFilters} />
+      <Scheduler 
+        appointments={appointments.map((appointment)=>{
+          return {
+            id: appointment._id,
+            psyId: appointment.psy,
+            title: `${appointment.service}-${appointment.user}`,
+            start: new Date(appointment.start_time),
+            end: new Date(appointment.end_time),
+            allDay: false,
+            status: appointment.status,
+            payed: appointment.payed,
+          }
+        })}
+      />
       <Notification
         isNotifying={isNotifying}
         close={closeMessage}
