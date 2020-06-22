@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { dateYYYYMMDDPattern } from 'Utils/validations';
+import { getCurrentTime } from 'Utils/utilities';
 import useForm from '../hooks/useForm';
 
 import Button from './Button';
@@ -36,7 +37,7 @@ const Filters = (props) => {
   const handleSubmit = async (event) => {
     const formData = handleData(event);
     console.log(formData);
-    setFilters(formData);
+    setFilters({...formData, currentDate: getCurrentTime()});
   }
 
   return (

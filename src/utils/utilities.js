@@ -27,10 +27,19 @@ export const formatDate = (date = new Date()) => {
   let day = '' + givenDate.getDate();
   const year = givenDate.getFullYear();
 
-  if (month.length < 2) 
-    month = '0' + month;
-  if (day.length < 2) 
-    day = '0' + day;
+  if (month.length < 2)  month = '0' + month;
+  if (day.length < 2)  day = '0' + day;
 
   return [year, month, day].join('-');
+}
+
+export const formatTime = (date = new Date()) => {
+  const givenDate = new Date(date)
+  let hour = '' + givenDate.getHours();
+  let minutes = '' + givenDate.getMinutes();
+
+  if (hour.length < 2) hour = '0' + hour;
+  if (minutes.length < 2) minutes = '0' + minutes;
+
+  return [hour, minutes].join(':');
 }

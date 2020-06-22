@@ -7,6 +7,7 @@ import TERAPIFY_ICON from '../assets/images/terapifyIcon.svg';
 
 import Modal from './Modal'
 import { statusColors } from 'Constants/app';
+import { formatTime } from 'Utils/utilities';
 import useToggle from '../hooks/useToggle'
 import psychologists from '../utils/mocks/psychologists';
 
@@ -28,6 +29,7 @@ const ModalContent = styled.div`
 const ModalTitle = styled.h2`
   color: #0085ff;
   font-size: 2em;
+  margin: 10px 0px;
   text-align: center;
 `;
 
@@ -113,6 +115,9 @@ const Scheduler = ({ appointments = [] }) => {
             </Line>
             <Line>
               Paciente: No disponible
+            </Line>
+            <Line>
+              Hora de Consulta: <Status color={statusColors[selectedAppointment.status]}>{formatTime(selectedAppointment.start)}hrs</Status>
             </Line>
             <Line>
               Psícologo: { psychologists.find((psy) => (psy.psyId === selectedAppointment.psy)).name || 'No disponible' }

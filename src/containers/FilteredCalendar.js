@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Api from 'Utils/api';
 import useNotification from '../hooks/useNotification';
-import { formatDate, getlastDateAfterDays } from 'Utils/utilities';
+import { formatDate, getlastDateAfterDays, getCurrentTime } from 'Utils/utilities';
 
 import Filters from '../components/Filters';
 import Notification from '../components/Notification';
@@ -18,6 +18,7 @@ const FilteredCalendar = (props) => {
     psychologistId: 1,
     startDate: formatDate(new Date()),
     endDate: formatDate(getlastDateAfterDays(6)),
+    currentDate: getCurrentTime(),
   }
   const [filters, setFilters] = useState(defaultData);
   const [appointments, setAppointments] = useState([]);
@@ -25,7 +26,7 @@ const FilteredCalendar = (props) => {
 
   const getPsychologistAppointments = () => {
     setIsLoading(true);
-    const serviceURL = `/appointments/psy/${filters.psychologistId}?start_time=${filters.startDate}&end_time=${filters.endDate}`;
+    const serviceURL = `/appointments/psy/${filters.psychologistId}?start_time=${filters.startDate}&end_time=${filters.endDate}&current_time=${filters.currentDate}`;
     console.log('serviceURL-->', serviceURL);
     
     Api.apiGet(serviceURL, (json) => {
