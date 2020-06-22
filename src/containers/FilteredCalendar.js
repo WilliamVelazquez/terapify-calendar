@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Api from 'Utils/api';
+import useNotification from '../hooks/useNotification';
 import { formatDate, getlastDateAfterDays } from 'Utils/utilities';
 
 import Filters from '../components/Filters';
+import Notification from '../components/Notification';
 
 const Container = styled.div`
   width: 100%;
@@ -18,6 +20,7 @@ const FilteredCalendar = (props) => {
   }
   const [filters, setFilters] = useState(defaultData);
   const [appointments, setAppointments] = useState([]);
+  const [message, showMessage, closeMessage, isNotifying] = useNotification();
 
   const getPsychologistAppointments = () => {
     setIsLoading(true);
@@ -27,6 +30,7 @@ const FilteredCalendar = (props) => {
     Api.apiGet(serviceURL, (json) => {
       if (json.message !== 'appointments listed') {
         console.log('getPsychologistAppointments error');
+        showMessage('Error al obtener citas programadas.');
       } else {
         console.log('json', json);
         setAppointments(json.data);
@@ -34,6 +38,7 @@ const FilteredCalendar = (props) => {
       }
     }, () => {
       setIsLoading(false);
+      showMessage('Error al obtener citas.');
     });
   }
 
@@ -44,6 +49,11 @@ const FilteredCalendar = (props) => {
   return (
     <Container>
       <Filters defaultData={defaultData} setFilters={setFilters} />
+      <Notification
+        isNotifying={isNotifying}
+        close={closeMessage}
+        message={message}
+      />
     </Container>
   );
 };
