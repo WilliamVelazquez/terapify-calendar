@@ -4,7 +4,7 @@ export const API_URL = 'https://terapify-api.vercel.app/api';
 
 export const statusColors = {
   'Activa': '#0085ff',
-  'Cancelada': '#d66262',
-  'Pendiente': '#e67500',
-  'Reagenda': '#d2367e'
+  'Cancelada': '#da4545',
+  'Pendiente': '#e6b400',
+  'Reagenda': '#9d36d2'
 };
