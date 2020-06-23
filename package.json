@@ -7,7 +7,9 @@
     "dev": "webpack-dev-server --open --config ./webpack.dev.config.js",
     "prod": "webpack -p --env.NODE_ENV=production --env.production --progress",
     "deploy:new": "npm run prod && git add dist/ && git commit -m \"Deploy to gh-pages\" && git subtree push --prefix dist origin gh-pages",
-    "deploy": "npm run prod && git add dist/ && git commit -m \"Deploy to gh-pages\" && git push --delete origin gh-pages && git subtree push --prefix dist origin gh-pages"
+    "deploy": "npm run prod && git add dist/ && git commit -m \"Deploy to gh-pages\" && git push --delete origin gh-pages && git subtree push --prefix dist origin gh-pages",
+    "test": "cypress open --project ./test",
+    "test:run": "cypress run --project ./test"
   },
   "repository": {
     "type": "git",
@@ -48,6 +50,7 @@
     "babel-polyfill": "6.26.0",
     "clean-webpack-plugin": "3.0.0",
     "css-loader": "3.6.0",
+    "cypress": "4.8.0",
     "dotenv": "8.2.0",
     "eslint": "7.3.0",
     "eslint-config-airbnb": "18.2.0",

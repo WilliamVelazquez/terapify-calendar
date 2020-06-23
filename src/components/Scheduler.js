@@ -134,8 +134,7 @@ const Scheduler = ({ appointments = [], handleUpdateStatus = null, isOpen = fals
               <Select 
                 value={selectedStatus}
                 onChange={(event)=>setSelectedStatus(event.target.value)}
-                id='psychologistId'
-                /* label='Psicólogo' */
+                id='statusId'
                 placeholder='- Seleccione -'
                 data={status}
                 dataId='value'
