@@ -103,6 +103,9 @@ const Scheduler = ({ appointments = [], handleUpdateStatus = null, isOpen = fals
             month: 'Mes',
             week: 'Semana',
             day: 'Día',
+            date: 'Fecha',
+            time: 'Horario',
+            event: 'Cita',
             // agenda: 'Lista'
             showMore: (total) => (
               <div

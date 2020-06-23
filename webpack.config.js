@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 require('dotenv').config();
 
@@ -24,6 +25,11 @@ if (isProd) {
   plugins.push(
     new CleanWebpackPlugin(),
   );
+  plugins.push(
+    new MomentLocalesPlugin({
+      localesToKeep: ['es', 'es-us'],
+    }),
+  )
 }
 
 module.exports = {
