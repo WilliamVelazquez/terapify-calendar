@@ -8,8 +8,10 @@ import TERAPIFY_ICON from '../assets/images/terapifyIcon.svg';
 import Modal from './Modal'
 import { statusColors } from 'Constants/app';
 import { formatTime } from 'Utils/utilities';
-import useToggle from '../hooks/useToggle'
 import psychologists from '../utils/mocks/psychologists';
+import status from '../utils/mocks/status';
+import Select from './Select';
+import Button from './Button';
 
 const Container = styled.div`
   width: 92%;
@@ -40,7 +42,19 @@ const Line = styled.p`
   text-align: center;
 `;
 
-const Status = styled.span`
+const StatusContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  /* display: grid;
+  grid-gap: 10px;
+  justify-items: end;
+  grid-template-columns: 1fr;
+  @media (min-width: 568px) {
+    grid-template-columns: 1fr 1fr;
+  } */
+`;
+
+const Colored = styled.span`
   color: ${(props) => props.color || '#0085ff' }
 `;
 
@@ -54,9 +68,9 @@ const localizer = momentLocalizer(moment);
 
 
 
-const Scheduler = ({ appointments = [] }) => {
-  const [isOpen, toggleModal, setIsOpen] = useToggle(false);
+const Scheduler = ({ appointments = [], handleUpdateStatus = null, isOpen = false, toggleModal = null, setIsOpen = null }) => {
   const [selectedAppointment, setSelectedAppointment] = useState({});
+  const [selectedStatus, setSelectedStatus] = useState({});
 
   return (
     <Container>
@@ -69,9 +83,10 @@ const Scheduler = ({ appointments = [] }) => {
         endAccessor="end"
         defaultView='month'
         onSelectEvent={(event)=>{
-          console.log('event', event);
+          /* console.log('event', event); */
           if(event){
             setSelectedAppointment(event);
+            setSelectedStatus(event.status);
             setIsOpen(true);
           }
         }}
@@ -110,18 +125,36 @@ const Scheduler = ({ appointments = [] }) => {
           selectedAppointment &&
           <ModalContent>
             <ModalTitle>{selectedAppointment.title}</ModalTitle>
-            <Line>
-              Estatus: <Status color={statusColors[selectedAppointment.status]}>{selectedAppointment.status}</Status>
-            </Line>
+            <StatusContainer>
+              <Line>
+                <Colored>
+                  Estatus: 
+                </Colored>
+              </Line>
+              <Select 
+                value={selectedStatus}
+                onChange={(event)=>setSelectedStatus(event.target.value)}
+                id='psychologistId'
+                /* label='Psicólogo' */
+                placeholder='- Seleccione -'
+                data={status}
+                dataId='value'
+                dataText='value'
+              />
+            </StatusContainer>
             <Line>
               Paciente: No disponible
             </Line>
             <Line>
-              Hora de Consulta: <Status color={statusColors[selectedAppointment.status]}>{formatTime(selectedAppointment.start)}hrs</Status>
+              Hora de Consulta: <Colored color={statusColors[selectedAppointment.status]}>{formatTime(selectedAppointment.start)}hrs</Colored>
             </Line>
             <Line>
               Psícologo: { psychologists.find((psy) => (psy.psyId === selectedAppointment.psy)).name || 'No disponible' }
             </Line>
+            {
+              (selectedAppointment.status !== selectedStatus) &&
+              <Button text='Actualizar estatus' onClick={() => handleUpdateStatus(selectedAppointment.id, selectedStatus)} />
+            }
             <Image src={TERAPIFY_ICON} alt='Terapify Logo' />
           </ModalContent>
         }
