@@ -1,6 +1,6 @@
 import { isEmptyObject } from 'Utils/validations';
 
-import { GET_TYPE, POST_TYPE, API_URL } from 'Constants/app';
+import { GET_TYPE, POST_TYPE, PUT_TYPE, API_URL } from 'Constants/app';
 
 class Api {
   apiGet = async (URL, callback, errorCallback, headerAccept, headerContentType) => {
@@ -11,6 +11,11 @@ class Api {
   apiPost = async (URL, body, callback, errorCallback, headerAccept, headerContentType) => {
     const service = API_URL + URL;
     this.apiHttpRequest(POST_TYPE, service, body, callback, errorCallback, headerAccept, headerContentType);
+  }
+  
+  apiPut = async (URL, body, callback, errorCallback, headerAccept, headerContentType) => {
+    const service = API_URL + URL;
+    this.apiHttpRequest(PUT_TYPE, service, body, callback, errorCallback, headerAccept, headerContentType);
   }
 
   apiHttpRequest = async (methodType, service, body, callback, errorCallback, headerAccept, headerContentType) => {

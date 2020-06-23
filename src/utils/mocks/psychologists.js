@@ -1,4 +1,4 @@
-const users = [
+const psychologists = [
   {
     id: 1,
     name: 'Luz Victoria Meza Morales',
@@ -21,4 +21,4 @@ const users = [
   },
 ];
 
-export default users;
+export default psychologists;
