@@ -2,6 +2,8 @@
 
 Calendar to see psychologist appointments, developed with ReactJs and using terapify-api.
 
+![Terapify](./.readme-static/terapify.svg)
+
 
 ### 🚀 Links
 
