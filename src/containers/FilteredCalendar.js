@@ -28,7 +28,7 @@ const FilteredCalendar = (props) => {
 
   const getPsychologistAppointments = () => {
     setIsLoading(true);
-    const serviceURL = `/appointments/psy/${filters.psychologistId}?start_time=${filters.startDate}&end_time=${filters.endDate}&current_time=${filters.currentDate}`;
+    const serviceURL = `/appointments/psy/${filters.psychologistId}?start_time=${filters.startDate}T00:00:00.000Z&end_time=${filters.endDate}T23:59:59.000Z&current_time=${filters.currentDate}`;
     // console.log('serviceURL-->', serviceURL);
     
     Api.apiGet(serviceURL, (json) => {
