@@ -127,7 +127,7 @@ const Scheduler = ({ appointments = [], handleUpdateStatus = null, isOpen = fals
             <ModalTitle>{selectedAppointment.title}</ModalTitle>
             <StatusContainer>
               <Line>
-                <Colored>
+                <Colored color={statusColors[selectedAppointment.status]}>
                   Estatus: 
                 </Colored>
               </Line>

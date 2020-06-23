@@ -41,6 +41,33 @@ npm run prod
 
 >After creating the production build you can open the **index.html** on your browser.
 
+📌**Testing with Interface**
+```
+npm run dev
+```
+>This project runs on **http://localhost:3001** or the specified **PORT** on the .env file.
+
+>You must specify the same port at the **/test/cypress.json** file.
+
+After running the project, on other terminal run:
+```
+npm run test
+```
+After a moment a cypress window will appear, to run the test click on: **cashOpening.spec.js**
+
+📌**Testing from terminal**
+```
+npm run dev
+```
+>This project runs on **http://localhost:3001** or the specified **PORT** on the .env file.
+
+>You must specify the same port at the **/test/cypress.json** file.
+
+After running the project, on other terminal run:
+```
+npm run test:run
+```
+
 📌**Deployment on GitHub Pages**
 
 Run the following command to create the production build and deploy on gh-pages branch for the first time:
