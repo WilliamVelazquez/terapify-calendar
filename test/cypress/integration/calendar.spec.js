@@ -33,5 +33,4 @@ describe('Cash Opening', () => {
     cy.contains('h2','Cita de pareja-10').should('be.visible');
 		cy.screenshot('show-modal-appointment-data');
   });
-
 });
